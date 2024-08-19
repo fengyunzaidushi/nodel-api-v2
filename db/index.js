@@ -1,26 +1,31 @@
-const { Sequelize } = require('sequelize')
+const { Sequelize } = require("sequelize");
 
 const sequelize = new Sequelize({
-  host: 'localhost',
-  username: 'root',
-  password: 'root',
-  database: 'novel',
-  dialect: 'mysql',
+  host: "localhost",
+  username: "root",
+  password: "root",
+  database: "novel",
+  dialect: "mysql",
   define: {
-    charset: 'utf8mb4'
+    charset: "utf8mb4",
+    collate: "utf8mb4_unicode_ci",
   },
   dialectOptions: {
-    collate: 'utf8mb4_unicode_ci'
-  }
-})
+    charset: "utf8mb4",
+    collate: "utf8mb4_unicode_ci",
+  },
+});
 
 // 测试连接
-sequelize.authenticate().then(_=>{
-  console.log("数据库连接成功!");
-}).catch(err=>{
-  console.log("数据库连接失败! ", err);
-})
+sequelize
+  .authenticate()
+  .then((_) => {
+    console.log("数据库连接成功!");
+  })
+  .catch((err) => {
+    console.log("数据库连接失败! ", err);
+  });
 
 sequelize.sync();
 
-module.exports = sequelize
+module.exports = sequelize;
